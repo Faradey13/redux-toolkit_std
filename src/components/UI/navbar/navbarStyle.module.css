@@ -1,0 +1,12 @@
+.navbar{
+    width: 100%;
+    height: 150px;
+    background: darkseagreen;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    box-sizing: border-box;
+}
+.navbar__buttons_block{
+    width: 150px;
+}

@@ -1,24 +1,58 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
-import {IPost} from "../../types/users";
-import {useEffect} from "react";
-import {useAppSelector} from "../../components/hooks/redux";
+import {IComment, IPost} from "../../types/posts";
 
 
 
-const {page,limit,totalPages} = useAppSelector(state => state.postReducer)
+
+export interface fetchParams {
+    limit: number;
+    page: number;
+}
 
 export const fetchPosts = createAsyncThunk(
 
-    'post/fetchALL',
+    'posts/fetchALL',
 
-    async ({page, limit}, thunkAPI) => {
+    async ({page, limit}:fetchParams, thunkAPI) => {
 
-        const response = await axios.get<IPost>('https://jsonplaceholder.typicode.com/posts', {
+        const response = await axios.get<IPost[]>('https://jsonplaceholder.typicode.com/posts', {
             params: {
                 _limit: limit,
                 _page: page
             }
         })
+
+        return response.data
     }
+)
+
+export const fetchHeaders = createAsyncThunk(
+
+    'headers/fetchALL',
+
+    async (_, thunkAPI) => {
+
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+
+        return response.data.length
+    }
+)
+
+export const fetchPost = createAsyncThunk(
+    'post/fetchAll',
+    async (id:number) => {
+        const response = await axios.get<IPost>(`https://jsonplaceholder.typicode.com/posts/${id}`)
+
+        return response.data
+    }
+
+)
+export const fetchComments = createAsyncThunk(
+    'comments/FetchAll',
+    async (id:number) => {
+        const response = await axios.get<IComment>(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
+    return response.data
+    }
+
 )

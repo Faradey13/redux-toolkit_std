@@ -1,0 +1,11 @@
+.my_button {
+
+    min-width: 150px;
+    height: 40px;
+    border: darkslategray 2px solid;
+    background: cadetblue;
+    padding: 5px 10px;
+    margin-top:5px;
+    font-size: 14px;
+
+}
