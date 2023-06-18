@@ -9,7 +9,7 @@ export interface IPost {
 
 export interface IFilter {
     sort: keyof IPost | undefined;
-    query: keyof IPost | undefined;
+    query: keyof IPost | undefined | string;
 }
 
 export interface IComment {

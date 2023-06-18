@@ -33,7 +33,7 @@ const Posts = () => {
 
     const [modal, setModal] = useState<boolean>(false)
     const [filter, setFilter] = useState<IFilter>({
-        sort: undefined, query: undefined
+        sort: undefined, query: ''
     })
 
 
@@ -43,7 +43,7 @@ const Posts = () => {
     useEffect(() => {
         dispatch(fetchPosts({limit: limit, page: page}))
 
-    }, [filter, page])
+    }, [limit, page])
 
     useEffect(() => {
         dispatch(fetchHeaders())
